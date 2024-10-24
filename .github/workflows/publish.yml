@@ -20,20 +20,25 @@ jobs:
 
     steps:
       - name: Checkout 🛎️
+        working-directory: ./mllobet.github.io
         uses: actions/checkout@v4
 
       - name: Setup Node.js ⚙️ - Cache dependencies ⚡ - Install dependencies 🔧
+        working-directory: ./mllobet.github.io
         uses: ./.github/workflows/setup-node
 
       - name: Setup Pages ⚙️
+        working-directory: ./mllobet.github.io
         uses: actions/configure-pages@v4
         with:
           static_site_generator: next
 
       - name: Build with Next.js 🏗️
+        working-directory: ./mllobet.github.io
         run: npx next build
 
       - name: Upload artifact 📡
+        working-directory: ./mllobet.github.io
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./out
