@@ -13,10 +13,15 @@ runs:
       id: cache_dependencies
       uses: actions/cache@v3
       with:
-        path: node_modules
-        key: node-modules-${{ hashFiles('package-lock.json') }}
+        # Update the path to point to the correct node_modules directory
+        path: mllobet.github.io/node_modules
+        # Update the key to point to the correct package-lock.json location
+        key: node-modules-${{ hashFiles('mllobet.github.io/package-lock.json') }}
 
     - name: Install dependencies 🔧
       shell: bash
       if: steps.cache_dependencies.outputs.cache-hit != 'true'
-      run: npm ci
+      # Change directory to mllobet.github.io before running npm ci
+      run: |
+        cd mllobet.github.io
+        npm ci
